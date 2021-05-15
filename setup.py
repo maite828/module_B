@@ -21,22 +21,6 @@ def get_install_requires(requirements_file: str):
         req = [r.line for r in reqs.parse(f)]
     return req
 
-
-def get_extras_require():
-    with open('requirements_extra.txt') as fp:
-        extra_deps = defaultdict(set)
-        for k in fp:
-            if k.strip() and not k.startswith('#') and not k.startswith('-r'):
-                tags = set()
-                if '#' in k:
-                    k, v = k.split('#')
-                    tags.update(vv.strip() for vv in v.split(','))
-                tags.add(re.split('[<=>]', k)[0])
-                for t in tags:
-                    extra_deps[t].add(k)
-        extra_deps['all'] = set(vv for v in extra_deps.values() for vv in v)
-    return extra_deps
-
 setup(
     name=microlib_name,
     version=__version__,
@@ -48,7 +32,6 @@ setup(
     description="Macrolib's description",
     license="MIT",
     #tests_require=get_install_requires('requirements_dev.txt'),
-    #extras_require=get_extras_require(),
     python_requires=">=3.6",
     zip_safe=False,
     include_package_data=True,
