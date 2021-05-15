@@ -2,7 +2,7 @@
 install: ## install requirements and project in editable mode
 	pip install pip==19.3.1
 	pip install setuptools==49.6.0
-	pip install -r requirements_dev.txt --extra-index-url ${EXTRA_INDEX_RUNTIME_GDT}
+	#pip install -r requirements_dev.txt --extra-index-url ${EXTRA_INDEX_RUNTIME_GDT}
 	pip install -e .
 
 clean: .clean-build .clean-pyc ## remove all build, test, coverage and Python artifacts
